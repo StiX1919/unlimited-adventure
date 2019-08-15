@@ -1,0 +1,51 @@
+position: relative;
+
+    ${props => {
+        let {index, row} = props
+        let left = 10 - (index * 2)
+
+        if(index < 5){
+            return `
+                border-bottom: ${30 + (row * 2)}px solid black;
+                margin-right: ${20 - (row * 2) + left + 2}px;
+                width: ${20 + (row * 2) - left}px;
+                border-left: ${left}px solid transparent
+            `
+        } else {
+            return `
+                border-top: ${30 + (row * 2)}px solid black;
+                margin-right: ${20 + (row * 2) - 2 + left}px;
+                width: ${20 + (row * 2) + left}px;
+                border-left: ${-left }px solid transparent
+            `
+        }
+    }}
+
+    ::after {
+        ${props => {
+            let {index, row} = props
+            let right = 8 - (index * 2)
+            if(index < 5){
+                return `
+                    position: absolute;
+                    content: "";
+                    border-top: ${30 + (row * 2)}px solid green;
+                    margin-left: ${5 + index + row}px;
+                    width: ${20 + (row * 2) - right}px;
+                    border-right: ${right}px solid transparent
+                    
+                `
+            } else {
+                return `
+                    position: absolute;
+                    content: "";
+                    border-bottom: ${30 + (row * 2)}px solid green;
+                    margin-left: ${15 - index + row}px;
+                    width: ${20 + (row * 2) + right}px;
+                    border-right: ${Math.abs(right)}px solid transparent
+                    margin-top: -${30 + (row * 2)}px;
+                `
+            }
+
+        }}
+    }

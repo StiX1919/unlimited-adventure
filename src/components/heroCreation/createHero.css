@@ -1,0 +1,10 @@
+.stats {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.stats > div {
+    justify-content: space-between;
+    align-items: center
+}

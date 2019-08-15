@@ -1,0 +1,148 @@
+.App {
+  text-align: center;
+  width: 100vw;
+  height: 100vh
+}
+
+.map-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 55%
+}
+
+
+
+.space-content {
+  position: absolute;
+  z-index: 10;
+  top: 10%;
+  left: 10%;
+}
+
+.left-bar {
+  background-color: black;
+  height: 25px;
+  width: 5px;
+
+  margin: 0 5px;
+  /* transform: rotate(12deg) */
+}
+.right-bar {
+  background-color: black;
+  height: 25px;
+  width: 5px;
+
+  margin: 0 0 0 20px;
+  /* transform: rotate(-12deg) */
+}
+.vert-bar {
+  background-color: black;
+  height: 5px;
+  width: 100%;
+  margin: 5px 0
+}
+
+
+
+h4 {
+  margin: 0
+}
+
+.d-pad {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 110px;
+  width: 110px;
+}
+
+.up-d-pad {
+  width: 40px;
+  height: 30px;
+  border-radius: 10%;
+
+  background-color: black
+}
+.up-d-pad::after {
+  border-top: 10px solid black;
+  content: '';
+  width: 30px;
+
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+
+  position: absolute;
+  margin-top: 28px;
+  margin-left: -20px
+}
+.down-d-pad {
+  width: 40px;
+  height: 30px;
+  border-radius: 10%;
+
+  background-color: black
+}
+.down-d-pad::before {
+  border-bottom: 10px solid black;
+  content: '';
+  width: 30px;
+
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+
+  position: absolute;
+  margin-top: -8px;
+  margin-left: -20px
+}
+
+.left-d-pad {
+  width: 30px;
+  height: 40px;
+  border-radius: 10%;
+
+  background-color: black
+}
+.left-d-pad::after {
+  border-left: 10px solid black;
+  content: '';
+  height: 30px;
+
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+
+  position: absolute;
+  margin-left: 13px
+}
+
+.right-d-pad {
+  width: 30px;
+  height: 40px;
+  border-radius: 10%;
+
+  background-color: black
+}
+.right-d-pad::before {
+  border-right: 10px solid black;
+  content: '';
+  height: 30px;
+
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+
+  position: absolute;
+  margin-left: -23px
+}
+
+.d-pad-center {
+  display: flex;
+  justify-content: space-between;
+  width: 110px
+}
+
+
+
+
+
+
