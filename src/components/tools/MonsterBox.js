@@ -19,7 +19,7 @@ function MonsterBox(props) {
 
     return (
         <img style={props.monsterR.attacking ? {border: 'solid red 2px', height: '46px', width: '46px'} : null} 
-            onClick={() => props.attackMon(props.index)}
+            onClick={props.monsterR.attacking ?() => props.attackMon(props.index): null}
             className='mon-pic' 
             src={props.monster.info.img_link} 
             alt='a monster'
