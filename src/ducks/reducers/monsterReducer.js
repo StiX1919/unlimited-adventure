@@ -56,10 +56,30 @@ const initialState = {
     items: [],
     exp: 0
   },
-  attacking: false
+  attacking: false,
+  battleOrder: []
 };
 
 //Action Creators
+
+export function updateBattleOrder(mons, hero) {
+  let order = mons.sort((a,b) => {
+    return b.info.spd - a.info.spd
+  })
+  let heroIn = false
+  for(let i = 0; i < order.length; i++){
+    if(order[i].info.spd < hero.stats.agility && heroIn === false){
+      heroIn = true
+      order.splice(i,0, hero)
+    }
+  }
+  console.log('mons', order)
+  return {
+    type: 'stuff',
+    payload: order
+  }
+
+}
 
 export function attackMon(index) {
   return {

@@ -1,12 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 
 import MonsterBox from "./MonsterBox";
 import BattleMenu from './BattleMenu'
+import {updateBattleOrder} from '../../ducks/reducers/monsterReducer'
 
 import './BattleSection.css'
 
 function BattleSection(props) {
+
+    useEffect(() => {
+        props.updateBattleOrder(props.monsterR.combatMons, {stats: {agility: 550}})
+    },[props.monsterR.combatMons.length])
 
 
     return (
@@ -37,5 +42,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  {updateBattleOrder}
 )(BattleSection);
