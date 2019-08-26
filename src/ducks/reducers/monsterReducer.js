@@ -17,6 +17,8 @@ const GET_REWARDS = 'GET_REWARDS'
 const START_ATTACK = 'START_ATTACK'
 const ATTACK_MON = 'ATTACK_MON'
 
+const BATTLE_ORDER = 'BATTLE_ORDER'
+
 //Initial State
 
 const initialState = {
@@ -63,7 +65,7 @@ const initialState = {
 //Action Creators
 
 export function updateBattleOrder(mons, hero) {
-  let order = mons.sort((a,b) => {
+  let order = mons.slice().sort((a,b) => {
     return b.info.spd - a.info.spd
   })
   let heroIn = false
@@ -73,9 +75,9 @@ export function updateBattleOrder(mons, hero) {
       order.splice(i,0, hero)
     }
   }
-  console.log('mons', order)
+  // console.log('mons', order)
   return {
-    type: 'stuff',
+    type: BATTLE_ORDER,
     payload: order
   }
 
@@ -396,6 +398,12 @@ export default function monsterReducer(state = initialState, action) {
           monsters: newMons,
           combatMons: newCombats
         }
+
+    case BATTLE_ORDER:
+      return {
+        ...state,
+        battleOrder: action.payload
+      }
     default:
       return state;
   }

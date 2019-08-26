@@ -8,12 +8,29 @@ import {updateBattleOrder} from '../../ducks/reducers/monsterReducer'
 import './BattleSection.css'
 
 function BattleSection(props) {
+    let [currentAttacker, setAttacker] = useState({type: 'hero', index: 0, inBattle: false})
 
     useEffect(() => {
         props.updateBattleOrder(props.monsterR.combatMons, {stats: {agility: 550}})
+        props.monsterR.combatMons.length ? setAttacker({...currentAttacker, inBattle: true}) : setAttacker({...currentAttacker, inBattle: false}) 
     },[props.monsterR.combatMons.length])
+    useEffect(() => {
+        console.log('in')
+        let {battleOrder} = props.monsterR
+        console.log('battleOrder', battleOrder)
+        for(let i = currentAttacker.index; i < battleOrder.length; i++){
+            console.log(battleOrder[i], 'current')
+            if(battleOrder[i].info){
+                setAttacker({...currentAttacker, type: 'mon', index: i})
+            } else {
+                setAttacker({...currentAttacker, type: 'hero', index: i})
+                break;
+            }
+        }
 
+    }, [currentAttacker.inBattle])
 
+    console.log(currentAttacker)
     return (
         <div className="battle-section">
             <img
