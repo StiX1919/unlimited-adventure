@@ -30,7 +30,6 @@ function BattleSection(props) {
 
     }, [currentAttacker.inBattle])
 
-    console.log(currentAttacker)
     return (
         <div className="battle-section">
             <img
