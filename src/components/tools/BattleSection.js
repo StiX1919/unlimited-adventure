@@ -15,11 +15,9 @@ function BattleSection(props) {
         props.monsterR.combatMons.length ? setAttacker({...currentAttacker, inBattle: true}) : setAttacker({...currentAttacker, inBattle: false}) 
     },[props.monsterR.combatMons.length])
     useEffect(() => {
-        console.log('in')
         let {battleOrder} = props.monsterR
         console.log('battleOrder', battleOrder)
         for(let i = currentAttacker.index; i < battleOrder.length; i++){
-            console.log(battleOrder[i], 'current')
             if(battleOrder[i].info){
                 setAttacker({...currentAttacker, type: 'mon', index: i})
             } else {
