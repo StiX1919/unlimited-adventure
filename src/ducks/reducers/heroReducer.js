@@ -198,6 +198,7 @@ export default function mapReducer(state=initialState, action) {
             }
 
         case CONVERSION:
+            
             return {
                 ...state,
                 hero: {

@@ -1,6 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react'
-import {Mutation} from 'react-apollo'
-import gql from 'graphql-tag'
 
 import {updateStats, resetStat, conversion, updateName} from '../../ducks/reducers/heroReducer'
 
@@ -34,7 +32,7 @@ function App(props) {
         props.conversion(state.age, state.name, props.hero.name, props.hero.luck)
     }
     
-
+    console.log(props)
     return (
         <div>
             <div className='info'>
