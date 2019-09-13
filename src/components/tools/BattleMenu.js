@@ -10,6 +10,7 @@ function BattleMenu(props) {
     return (
         <div>
             <button onClick={props.startAttack}>Attack</button>
+
         </div>
     )
 }
