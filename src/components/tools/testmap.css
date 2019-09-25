@@ -1,4 +1,4 @@
-position: relative;
+/* position: relative;
 
     ${props => {
         let {index, row} = props
@@ -48,4 +48,4 @@ position: relative;
             }
 
         }}
-    }
+    } */
