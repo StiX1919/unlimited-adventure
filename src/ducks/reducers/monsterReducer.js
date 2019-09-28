@@ -165,100 +165,98 @@ export function moveMonsters(X, Y, mons, entered, combatMons, hero) {
         let openSpaces = ['up', 'down', 'left', 'right']
         if(mons[i].X === X * 10) {
           openSpaces = openSpaces.filter((dir) => {
-        return dir !== 'right'
-      })
-    }
-    if(mons[i].X === X * 10 - 9){
-      openSpaces = openSpaces.filter((dir) => {
-        return dir !== 'left'
-      })
-    }
-    if(mons[i].Y === Y * 10) {
-      openSpaces = openSpaces.filter((dir) => {
-        return dir !== 'up'
-      })
-    }
-    if(mons[i].Y === Y * 10 - 9){
-      openSpaces = openSpaces.filter((dir) => {
-        return dir !== 'down'
-      })
-    }
-    movedMons.map(mon => {
-      if(mon.X === mons[i].X + 1 && mon.Y === mons[i].Y){
-        openSpaces = openSpaces.filter((dir) => {
-          return dir !== 'right'
+            return dir !== 'right'
+            })
+        }
+        if(mons[i].X === X * 10 - 9){
+          openSpaces = openSpaces.filter((dir) => {
+            return dir !== 'left'
+          })
+        }
+        if(mons[i].Y === Y * 10) {
+          openSpaces = openSpaces.filter((dir) => {
+            return dir !== 'up'
+          })
+        }
+        if(mons[i].Y === Y * 10 - 9){
+          openSpaces = openSpaces.filter((dir) => {
+            return dir !== 'down'
+          })
+        }
+        movedMons.map(mon => {
+          if(mon.X === mons[i].X + 1 && mon.Y === mons[i].Y){
+            openSpaces = openSpaces.filter((dir) => {
+              return dir !== 'right'
+            })
+          } 
+          if(mon.X === mons[i].X && mon.Y === mons[i].Y + 1){
+            openSpaces = openSpaces.filter((dir) => {
+              return dir !== 'up'
+            })
+          }
+          if(mon.X === mons[i].X - 1 && mon.Y === mons[i].Y){
+            openSpaces = openSpaces.filter((dir) => {
+              return dir !== 'left'
+            })
+          }
+          if(mon.X === mons[i].X && mon.Y === mons[i].Y - 1){
+            openSpaces = openSpaces.filter((dir) => {
+              return dir !== 'down'
+            })
+          }
         })
-      } 
-      if(mon.X === mons[i].X && mon.Y === mons[i].Y + 1){
-        openSpaces = openSpaces.filter((dir) => {
-          return dir !== 'up'
+        combatMons.map(mon => {
+          if(mon.X === mons[i].X + 1 && mon.Y === mons[i].Y){
+            openSpaces = openSpaces.filter((dir) => {
+              return dir !== 'right'
+            })
+          } 
+          if(mon.X === mons[i].X && mon.Y === mons[i].Y + 1){
+            openSpaces = openSpaces.filter((dir) => {
+              return dir !== 'up'
+            })
+          }
+          if(mon.X === mons[i].X - 1 && mon.Y === mons[i].Y){
+            openSpaces = openSpaces.filter((dir) => {
+              return dir !== 'left'
+            })
+          }
+          if(mon.X === mons[i].X && mon.Y === mons[i].Y - 1){
+            openSpaces = openSpaces.filter((dir) => {
+              return dir !== 'down'
+            })
+          }
         })
-      }
-      if(mon.X === mons[i].X - 1 && mon.Y === mons[i].Y){
-        openSpaces = openSpaces.filter((dir) => {
-          return dir !== 'left'
-        })
-      }
-      if(mon.X === mons[i].X && mon.Y === mons[i].Y - 1){
-        openSpaces = openSpaces.filter((dir) => {
-          return dir !== 'down'
-        })
-      }
-    })
-    combatMons.map(mon => {
-      if(mon.X === mons[i].X + 1 && mon.Y === mons[i].Y){
-        openSpaces = openSpaces.filter((dir) => {
-          return dir !== 'right'
-        })
-      } 
-      if(mon.X === mons[i].X && mon.Y === mons[i].Y + 1){
-        openSpaces = openSpaces.filter((dir) => {
-          return dir !== 'up'
-        })
-      }
-      if(mon.X === mons[i].X - 1 && mon.Y === mons[i].Y){
-        openSpaces = openSpaces.filter((dir) => {
-          return dir !== 'left'
-        })
-      }
-      if(mon.X === mons[i].X && mon.Y === mons[i].Y - 1){
-        openSpaces = openSpaces.filter((dir) => {
-          return dir !== 'down'
-        })
-      }
-    })
-    if(!openSpaces[0]){
-      movedMons.push(mons[i])
-    } else {
-      let ranDir = openSpaces[Math.floor(Math.random() * openSpaces.length)] 
-      switch(ranDir){
-        case 'up':
-          movedMons.push({...mons[i], Y: mons[i].Y + 1});
-          break;
-          case 'down':
-            movedMons.push({...mons[i], Y: mons[i].Y - 1})
-            break;
+        if(!openSpaces[0]){
+          movedMons.push(mons[i])
+        } else {
+          let ranDir = openSpaces[Math.floor(Math.random() * openSpaces.length)] 
+          switch(ranDir){
+            case 'up':
+              movedMons.push({...mons[i], Y: mons[i].Y + 1});
+              break;
+            case 'down':
+              movedMons.push({...mons[i], Y: mons[i].Y - 1})
+              break;
             case 'left':
               movedMons.push({...mons[i], X: mons[i].X - 1})
               break;
-              case 'right':
-                movedMons.push({...mons[i], X: mons[i].X + 1})
-                break;
-                default:
-                  movedMons.push(mons[i])
-                  
-                }
-              }
-            }
+            case 'right':
+              movedMons.push({...mons[i], X: mons[i].X + 1})
+              break;
+            default:
+              movedMons.push(mons[i])       
           }
-          
-          await dispatch({
-            type: MOVE_MON,
-            payload: movedMons
-          });
-          dispatch(matchedMonsters(hero.X, hero.Y))
         }
       }
+    }      
+    await dispatch({
+      type: MOVE_MON,
+      payload: movedMons
+    });
+    dispatch(matchedMonsters(hero.X, hero.Y))
+  }
+}
 
 export function matchedMonsters(X, Y){
     let xArea = [X - 1, X, X + 1]
