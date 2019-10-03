@@ -68,9 +68,11 @@ export function updateBattleOrder(mons, hero) {
   let order = mons.slice().sort((a,b) => {
     return b.info.spd - a.info.spd
   })
+  console.log(order)
   let heroIn = false
   for(let i = 0; i < order.length; i++){
     if(order[i].info.spd < hero.stats.agility && heroIn === false){
+      console.log('order', order, heroIn)
       heroIn = true
       order.splice(i,0, hero)
     }
