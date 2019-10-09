@@ -70,13 +70,19 @@ export function updateBattleOrder(mons, hero) {
   })
   console.log(order)
   let heroIn = false
-  for(let i = 0; i < order.length; i++){
-    if(order[i].info.spd < hero.stats.agility && heroIn === false){
-      console.log('order', order, heroIn)
-      heroIn = true
-      order.splice(i,0, hero)
+  if(order.length){
+    for(let i = 0; i < order.length; i++){
+      if(order[i].info.spd < hero.stats.agility && heroIn === false){
+        console.log('order', order, heroIn)
+        heroIn = true
+        order.splice(i,0, hero)
+      }
+    }
+    if(!heroIn){
+      order.push(hero)
     }
   }
+  else order = [hero]
   // console.log('mons', order)
   return {
     type: BATTLE_ORDER,

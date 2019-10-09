@@ -5,6 +5,7 @@ import { matchedMonsters, startAttack} from '../../ducks/reducers/monsterReducer
 
 
 function BattleMenu(props) {
+  let [battleIndex, setIndex] = useState(0)
 
 
     return (
