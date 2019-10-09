@@ -124,10 +124,10 @@ export function attack(newMon) {
   };
 }
 
-export function getMonsters(X, Y) {
-  return {
-    type: GET_MONSTERS,
-    payload: axios.get(`/api/getMonsters/${X}/${Y}`).then(response => {
+export function getMonsters(X, Y,heroX, heroY) {
+  return async function(dispatch){
+    
+    await axios.get(`/api/getMonsters/${X}/${Y}`).then(response => {
       let index = 0
       const areaMonsters = response.data.map(monster => {
         let randomX = (Math.floor(Math.random() * -10 ) + 1) + (X * 10);
@@ -135,10 +135,16 @@ export function getMonsters(X, Y) {
         index += 1
         return { index, X: randomX, Y: randomY, info: { ...monster } };
       });
-      return areaMonsters;
+      // return areaMonsters;
+      dispatch({
+        type: GET_MONSTERS,
+        payload: areaMonsters
+      })
     })
-  };
-}
+    dispatch(matchedMonsters(heroX, heroY))
+  }
+};
+
 
 export function removeMonster(id) {
   return {
@@ -315,7 +321,7 @@ export default function monsterReducer(state = initialState, action) {
         isLoading: true
       };
 
-    case GET_MONSTERS + '_FULFILLED':
+    case GET_MONSTERS:
       return {
         ...state,
         isLoading: false,

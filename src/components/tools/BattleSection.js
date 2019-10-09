@@ -14,19 +14,23 @@ function BattleSection(props) {
         props.updateBattleOrder(props.monsterR.combatMons, {stats: {agility: 550}})
         props.monsterR.combatMons.length ? setAttacker({...currentAttacker, inBattle: true}) : setAttacker({...currentAttacker, inBattle: false}) 
     },[props.monsterR.combatMons.length])
-    useEffect(() => {
-        let {battleOrder} = props.monsterR
-        console.log('battleOrder', battleOrder)
-        for(let i = currentAttacker.index; i < battleOrder.length; i++){
-            if(battleOrder[i].info){
-                setAttacker({...currentAttacker, type: 'mon', index: i})
-            } else {
-                setAttacker({...currentAttacker, type: 'hero', index: i})
-                break;
-            }
-        }
+    // useEffect(() => {
+    //     let {battleOrder} = props.monsterR
+    //     console.log('battleOrder', battleOrder)
+    //     for(let i = currentAttacker.index; i < battleOrder.length; i++){
+    //         if(battleOrder[i].info){
+    //             setAttacker({...currentAttacker, type: 'mon', index: i})
+    //         } else {
+    //             setAttacker({...currentAttacker, type: 'hero', index: i})
+    //             break;
+    //         }
+    //     }
 
-    }, [currentAttacker.inBattle])
+    // }, [currentAttacker.inBattle])
+    // setInterval(() => {
+    //     setAttacker({...currentAttacker, index: currentAttacker.index + 1})
+    //     console.log(currentAttacker.index)
+    // }, 1000)
 
     return (
         <div className="battle-section">

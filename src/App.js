@@ -29,7 +29,7 @@ function App(props) {
   });
 
   useEffect(() => {
-    props.getMonsters(props.mapR.mapX, props.mapR.mapY);
+    props.getMonsters(props.mapR.mapX, props.mapR.mapY, props.mapR.heroX, props.mapR.heroY);
   }, [props.mapR.mapX, props.mapR.mapY]);
 
   let currMonster = props.monsterR.monsters.find(
@@ -147,6 +147,7 @@ function App(props) {
     );
   });
 
+  // console.log(props.monsterR.battleOrder)
 
   return (
     <div className="App">
