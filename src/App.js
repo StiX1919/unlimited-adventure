@@ -147,6 +147,7 @@ function App(props) {
     );
   });
 
+  // console.log(props.monsterR.battleOrder)
 
   return (
     <div className="App">
