@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 //Action Constants
 let UPDATE_STATS = "UPDATE_STATS"
 let RESET_STAT = 'RESET_STAT'
@@ -108,7 +107,6 @@ const initialState = {
     bonusStats: 35
 }
 
-
 //Action Creators
 export function updateStats(stat){
     return {
@@ -145,9 +143,7 @@ export function conversion(age, name, heroName, luck) {
             att: bonusAtt
         }
     }
-
 }
-
 
 export function updateName(name){
     return {
@@ -155,9 +151,6 @@ export function updateName(name){
         payload: name
     }
 }
-
-
-
 //Reducer
 
 export default function mapReducer(state=initialState, action) {
@@ -229,13 +222,6 @@ export default function mapReducer(state=initialState, action) {
 
 }
 
-
-
-
-
-
-
-
 function genLuck(){
     let luck = Math.floor(Math.random() * 10) + 1
     if(luck === 9){
@@ -249,8 +235,6 @@ function genLuck(){
     }
     return luck
 }
-
-
 
 function nameCon(name){
     let newName = name
@@ -319,7 +303,6 @@ function growthRate(month, day, year) {
         return item += zodiacSign.stats[ind]
     })
 
-
     var singleNum = 0;
     while (year >= 10 ) {
         singleNum=0;
@@ -356,7 +339,6 @@ function growthRate(month, day, year) {
     zodiacStats[side] += dayDiff
     zodiacStats[otherSide] -= (dayDiff * 2)
 
-
     return {
         str: zodiacStats[0], 
         agi: zodiacStats[1],
@@ -365,7 +347,6 @@ function growthRate(month, day, year) {
         wis: zodiacStats[4]
     }
 }
-
 
 function findAttribute(name, luck){
     let attKey = ['void', 'heat', 'cold', 'static', 'gust', 'soil', 'body', 'mind', 'life', 'death']
@@ -390,9 +371,7 @@ function findAttribute(name, luck){
         }
     })
     
-
     firstName.map((lett) => {
-
         let index = +key[lett].toString().split('').pop()
         if(luck < 25){
             if(index > 7){
