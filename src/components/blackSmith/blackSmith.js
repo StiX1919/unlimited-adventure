@@ -18,3 +18,12 @@ function BlackSmith(props){
 
 
 export default BlackSmith
+
+
+
+let demoData = {
+    type: 'enchantmentName',
+    cost: 'material type',
+    level: 0,
+    bonus: 'depends on level'
+}
