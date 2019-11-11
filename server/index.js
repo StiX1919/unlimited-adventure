@@ -5,6 +5,7 @@ const session = require('express-session')
 const massive = require('massive')
 
 const {getMonsters} = require('./controllers/monsterCon.js')
+const {getWeapons} = require('./controllers/blacksmithCon.js')
 
 const port = 3001
 
@@ -42,6 +43,7 @@ app.put('/api/callingServer', (req, res, next) => {
 
 //Monster calls
 app.get('/api/getMonsters/:X/:Y', getMonsters)
+app.get('/api/weapons', getWeapons)
 
 
 
