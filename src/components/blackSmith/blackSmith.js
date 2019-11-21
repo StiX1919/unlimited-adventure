@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
+import './blackSmith.css'
+
 
 function BlackSmith(props){
     let [mods, setMods] = useState([{type: 'static'}])
@@ -12,6 +14,10 @@ function BlackSmith(props){
         })
     } ,[])  
 
+    let bars = []
+    for(let i = 0; i < 24; i++){
+        bars.push(<div key={i} className='vertBar short'/>)
+    }
 
 
 
@@ -22,10 +28,31 @@ function BlackSmith(props){
         return <h4>{weapon.name}</h4>
     })
     return (
-        <div>
-            {modList}
-            <br/>
-            {weaponList}
+        <div className='blackSmith'>
+            <div className='shopContainer'>
+                <div className='horizBar'/>
+                <div className='shopInnards'>
+                    <div className='vertBar'/>
+                    <div className='vertBar'/>
+                </div>
+                <div className='horizBar'/>
+                <div className='shopInnards extend'>
+                    {bars}
+                </div>
+                <div className='horizBar'/>
+            </div>
+
+            <div className='manPractice'>
+
+                <div className='head'/>
+                <div className='body'>
+                    <div className='leftSleeve'/>
+                    <div className='leftArm'/>
+                    <div className='leftForearm'/>
+
+                    <div className='rightSleeve'/>
+                </div>
+            </div>
         </div>
     )
 }
