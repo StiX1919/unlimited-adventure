@@ -143,19 +143,19 @@
     left: -36px;
     transform: rotate(20deg);
 }
-/* .leftArm::after{
+.leftArm::after{
     content: '';
     position: absolute;
     top: 10px;
-    right: -4px;
+    right: 0px;
     background: chocolate;
 
     width: 20px;
     height: 50px;
     border-radius: 100%;
     border-left: solid black .5px;
-    transform: rotate(6deg);
-} */
+    transform: rotate(4deg);
+}
 .leftForearm {
     width: 30px;
     height: 100px;
