@@ -19,7 +19,7 @@ function BlackSmith(props){
         bars.push(<div key={i} className='vertBar short'/>)
     }
 
-
+// starting research into before/after styling
 
     let modList = mods.map((mod, i) => {
         return <h4>{mod.type}</h4>
