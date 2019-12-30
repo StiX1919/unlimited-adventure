@@ -5,6 +5,7 @@ import {updateStats, resetStat, conversion, updateName} from '../../ducks/reduce
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './createHero.css'
+//start styling for better interaction
 
 
 function App(props) {
