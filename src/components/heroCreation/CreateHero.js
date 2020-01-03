@@ -54,12 +54,12 @@ function App(props) {
                         <h3>MP: {Math.floor((props.hero.luck / 500) * (props.hero.stats.wisdom + props.hero.stats.intelligence))}</h3>
                         <h3>SP: {Math.floor((props.hero.stats.agility + props.hero.stats.endurance) * (props.hero.luck / 500))}</h3>
                     </div>
+                    </div>
+                    
                 </div>
                 <Link to='/Map'>
                     <button disabled={!props.bonusStats && state.age && state.name ? false : true} onClick={handleSubmit}>Submit Hero</button>
                 </Link>
-            
-            </div>
         </div>
     );
 }
