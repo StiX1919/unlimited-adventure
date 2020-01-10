@@ -68,7 +68,7 @@ export function updateBattleOrder(mons, hero) {
   let order = mons.slice().sort((a,b) => {
     return b.info.spd - a.info.spd
   })
-  console.log(order)
+  // console.log(order)
   let heroIn = false
   if(order.length){
     for(let i = 0; i < order.length; i++){
@@ -83,7 +83,7 @@ export function updateBattleOrder(mons, hero) {
     }
   }
   else order = [hero]
-  // console.log('mons', order)
+  console.log('battle', order)
   return {
     type: BATTLE_ORDER,
     payload: order
@@ -91,10 +91,19 @@ export function updateBattleOrder(mons, hero) {
 
 }
 
-export function attackMon(index) {
-  return {
-    type: ATTACK_MON,
-    payload: index
+export function attackMon(index, obj) {
+  let newMons = obj.monsters.filter((mon, i) => {
+    return mon.index !== index
+  })
+  let newCombats = obj.combatMons.filter((mon, i) => {
+    return mon.index !== index
+  })
+  return async function(dispatch) {
+    await dispatch({
+      type: ATTACK_MON,
+      payload: {newMons, newCombats}
+    })
+    dispatch(moveMonsters(obj.mapX, obj.mapY, newMons, obj.entered, newCombats, obj.location))
   }
 }
 
@@ -397,18 +406,11 @@ export default function monsterReducer(state = initialState, action) {
       }
 
     case ATTACK_MON:
-        let newMons = state.monsters.filter((mon, i) => {
-          return mon.index !== action.payload
-        })
-        let newCombats = state.combatMons.filter((mon, i) => {
-          return mon.index !== action.payload
-        })
-
         return {
           ...state,
           attacking: false,
-          monsters: newMons,
-          combatMons: newCombats
+          monsters: action.payload.newMons,
+          combatMons: action.payload.newCombats
         }
 
     case BATTLE_ORDER:
