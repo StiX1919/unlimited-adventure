@@ -4,16 +4,24 @@ import {connect} from 'react-redux'
 import MonsterBox from "./MonsterBox";
 import BattleMenu from './BattleMenu'
 import {updateBattleOrder} from '../../ducks/reducers/monsterReducer'
+import {useInterval} from '../../hooks/useInterval'
 
 import './BattleSection.css'
 
 function BattleSection(props) {
+    let img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9JWBpjG4gcU3cR-vX6fYCnV9vohh9CE_Qm7437xm_mjldsiN6'
     let [currentAttacker, setAttacker] = useState({type: 'hero', index: 0, inBattle: false})
+    let [ind, setInd] = useState(0)
 
     useEffect(() => {
-        props.updateBattleOrder(props.monsterR.combatMons, {stats: {agility: 550}})
+        props.updateBattleOrder(props.monsterR.combatMons, props.heroR.hero)
         props.monsterR.combatMons.length ? setAttacker({...currentAttacker, inBattle: true}) : setAttacker({...currentAttacker, inBattle: false}) 
     },[props.monsterR.combatMons.length])
+    useInterval(() => {
+        console.log(props.monsterR.battleOrder[ind], ind)
+        setInd(ind < props.monsterR.battleOrder.length ? ind++ : 0)
+    }, !props.monsterR.battleOrder[1] || props.monsterR.battleOrder[ind].luck ? null: 1000)
+    // console.log(props.heroR)
     // useEffect(() => {
     //     let {battleOrder} = props.monsterR
     //     console.log('battleOrder', battleOrder)
@@ -31,31 +39,31 @@ function BattleSection(props) {
     //     setAttacker({...currentAttacker, index: currentAttacker.index + 1})
     //     console.log(currentAttacker.index)
     // }, 1000)
-
+    // console.log(ind)
     return (
         <div className="battle-section">
-            <img
-            className="battle-background"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9JWBpjG4gcU3cR-vX6fYCnV9vohh9CE_Qm7437xm_mjldsiN6"
-            alt="battle-img"
-            />
+            <img className="battle-background" src={img} alt="battle-img" />
             <img className='man-pic' src="https://i.redd.it/txwro5tmnqx11.png" alt="spiderman"/>
             <div className='mon-section'>
                 {props.monsterR.combatMons.map((mon, i) => {
-                        return <MonsterBox key={i} index={mon.index} monster={mon}/>
+                        console.log(ind, i)
+                        return <MonsterBox 
+                                active={mon.index===props.monsterR.battleOrder[ind].index} 
+                                key={i} 
+                                index={mon.index} 
+                                monster={mon}
+                                setInd={setInd} 
+                                ind={ind}/>
                     })
                 }
-            
             </div>
-
-            <BattleMenu />
-            
+            <BattleMenu/>
         </div>
     )
 }
 
 const mapStateToProps = state => {
-  return { mapR: state.mapReducer, monsterR: state.monsterReducer };
+  return { mapR: state.mapReducer, monsterR: state.monsterReducer, heroR: state.heroReducer };
 };
 
 export default connect(
