@@ -4,7 +4,6 @@ import {attackMon, moveMonsters} from '../../ducks/reducers/monsterReducer'
 
 import {connect} from 'react-redux'
 
-
 function MonsterBox(props) {
 
     function attacking(){
@@ -17,7 +16,6 @@ function MonsterBox(props) {
             location: {X: props.mapR.heroX , Y: props.mapR.heroY}
         })
         props.setInd(props.ind < props.monsterR.combatMons.length - 1 ? props.ind + 1 : 0)
-
     }
 
     return (

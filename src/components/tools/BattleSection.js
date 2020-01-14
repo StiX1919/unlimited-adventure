@@ -12,14 +12,28 @@ function BattleSection(props) {
     let img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9JWBpjG4gcU3cR-vX6fYCnV9vohh9CE_Qm7437xm_mjldsiN6'
     let [currentAttacker, setAttacker] = useState({type: 'hero', index: 0, inBattle: false})
     let [ind, setInd] = useState(0)
+    if(ind !== 0 && !props.monsterR.battleOrder[ind] && !props.monsterR.battleOrder[1]){
+        setInd(0)
+        // let newInd = props.monsterR.battleOrder.findIndex((e) => {
+        //     if (e.luck){
+        //         return true
+        //     }
+        // })
+        // console.log(newInd)
+        // setInd(newInd)
+    }
 
     useEffect(() => {
         props.updateBattleOrder(props.monsterR.combatMons, props.heroR.hero)
         props.monsterR.combatMons.length ? setAttacker({...currentAttacker, inBattle: true}) : setAttacker({...currentAttacker, inBattle: false}) 
     },[props.monsterR.combatMons.length])
+
+
     useInterval(() => {
-        console.log(props.monsterR.battleOrder[ind], ind)
-        setInd(ind < props.monsterR.battleOrder.length ? ind++ : 0)
+        let {battleOrder} = props.monsterR
+        console.log('attacking hero', battleOrder[ind])
+        setInd(ind < battleOrder.length ? ++ind : 0)
+        setAttacker(battleOrder[ind + 1] ? battleOrder[ind + 1]: battleOrder[0])
     }, !props.monsterR.battleOrder[1] || props.monsterR.battleOrder[ind].luck ? null: 1000)
     // console.log(props.heroR)
     // useEffect(() => {
