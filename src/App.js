@@ -40,7 +40,7 @@ function App(props) {
   } else if (state.battle && !currMonster) {
     setState({ ...state, battle: false, currMonster });
   }
-
+//need to change this so that it updates battle order before break
   let handleMove = async direction => {
     let { heroX, heroY } = props.mapR;
     switch (direction) {
